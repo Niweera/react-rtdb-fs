@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 
 import rootReducer from "./reducers";
 
-import firebase from "./config";
+import firebase from "../config";
 
 // react-redux-firebase config
 const rrfConfig = {
