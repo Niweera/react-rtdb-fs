@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { useFirestore, useFirebase } from "react-redux-firebase";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
+import { removeItemFromFS, removeItemFromRTDB } from "../../store/actions";
 
 const Items = () => {
   const firestore = useFirestore();
@@ -20,13 +21,13 @@ const Items = () => {
 
   const handleRemoveRTDB = async key => {
     if (isLoaded(auth) && !isEmpty(auth)) {
-      await firebase.remove(`todos/${key}`);
+      removeItemFromRTDB(key)(firebase);
     }
   };
 
   const handleRemoveFS = async key => {
     if (isLoaded(auth) && !isEmpty(auth)) {
-      await firestore.delete(`todos/${key}`);
+      removeItemFromFS(key)(firestore);
     }
   };
 

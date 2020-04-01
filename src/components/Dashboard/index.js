@@ -11,6 +11,7 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import Items from "../Items";
+import { addItemToFS, addItemToRTDB } from "../../store/actions";
 
 const Home = () => {
   const firebase = useFirebase();
@@ -26,12 +27,12 @@ const Home = () => {
 
   const addSampleTodo = () => {
     const sampleTodo = { text: Math.random(), done: false };
-    return firebase.push("todos", sampleTodo);
+    return addItemToRTDB(sampleTodo)(firebase);
   };
 
   const addToFirestore = () => {
     const sampleTodo = { text: Math.random() };
-    return firestore.add("todos", sampleTodo);
+    return addItemToFS(sampleTodo)(firestore);
   };
 
   return (
